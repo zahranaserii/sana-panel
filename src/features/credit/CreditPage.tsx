@@ -122,7 +122,7 @@ export default function CreditPage() {
               rowKey="id"
               size="small"
               loading={reqLoading}
-              dataSource={[...requests].reverse()}
+              dataSource={[...requests].sort((a, b) => b.date.localeCompare(a.date))}
               scroll={{ x: 800 }}
               locale={{ emptyText: 'هنوز درخواستی برای این شرکت ثبت نشده است.' }}
               columns={[

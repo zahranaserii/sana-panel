@@ -4,6 +4,7 @@ import {
   CheckCircleOutlined,
   CreditCardOutlined,
   LogoutOutlined,
+  ReloadOutlined,
   SafetyOutlined,
   SettingOutlined,
   ShopOutlined,
@@ -11,10 +12,12 @@ import {
   UserSwitchOutlined,
 } from '@ant-design/icons'
 import { useQueryClient } from '@tanstack/react-query'
-import { Button, Layout, Menu, Tag } from 'antd'
+import { App, Button, Layout, Menu, Tag } from 'antd'
 import type { MenuProps } from 'antd'
 import { useState, type ReactNode } from 'react'
 import { Outlet, useLocation, useMatches, useNavigate } from 'react-router-dom'
+import { resetDb } from '@/api/db'
+import { DEMO_ENABLED } from '@/api/seed'
 import { roleLabel } from '@/domain/constants'
 import type { TabKey } from '@/domain/permissions'
 import { faDigits } from '@/lib/digits'
@@ -51,6 +54,20 @@ export function AppLayout() {
   const { allowedTabs } = usePermissions()
   const logout = useAuthStore((s) => s.logout)
   const [collapsed, setCollapsed] = useState(false)
+  const { modal } = App.useApp()
+
+  const onResetDemo = () =>
+    modal.confirm({
+      title: 'بازنشانی داده‌های نمونه؟',
+      content: 'همه تغییرات شما پاک می‌شود و داده‌های نمونه از نو ساخته می‌شوند.',
+      okText: 'بازنشانی',
+      okButtonProps: { danger: true },
+      onOk: () => {
+        resetDb()
+        qc.clear()
+        window.location.reload()
+      },
+    })
 
   const title = (matches.at(-1)?.handle as { title?: string } | undefined)?.title ?? ''
   const selected = ROUTES.find((r) => location.pathname.startsWith(`/${r.path}`))?.path
@@ -89,6 +106,7 @@ export function AppLayout() {
             <div className="brand-title">سامانه اعتباری نوید امید (سانا)</div>
             <div className="brand-sub">طرح نگین میثاق</div>
           </div>
+          <div className="sider-menu">
           <Menu
             theme="dark"
             mode="inline"
@@ -99,6 +117,7 @@ export function AppLayout() {
               if (window.innerWidth < 992) setCollapsed(true)
             }}
           />
+          </div>
           {user && (
             <div className="user-box">
               <div className="user-name">{user.fullName}</div>
@@ -111,6 +130,11 @@ export function AppLayout() {
               <Button icon={<LogoutOutlined />} onClick={onLogout} block>
                 خروج از حساب
               </Button>
+              {DEMO_ENABLED && user.role === 'SYSTEM_ADMIN' && (
+                <Button icon={<ReloadOutlined />} onClick={onResetDemo} block size="small" type="text" style={{ color: '#AFC1D6' }}>
+                  بازنشانی داده‌های نمونه
+                </Button>
+              )}
             </div>
           )}
         </div>

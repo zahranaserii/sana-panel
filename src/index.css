@@ -98,3 +98,6 @@ body {
 .plain-table td { padding: 8px 12px; border-bottom: 1px solid #eef1f6; }
 .perms-table .group-start { border-inline-start: 2px solid var(--line); }
 .perms-table th { text-align: center; }
+.sider-inner { overflow: hidden; }
+.sider-menu { flex: 1; min-height: 0; overflow-y: auto; }
+.user-box { flex-shrink: 0; margin-top: 10px; }

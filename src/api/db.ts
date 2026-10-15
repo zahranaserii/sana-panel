@@ -18,7 +18,7 @@ import type {
   Staff,
   User,
 } from '@/types'
-import { buildDemoData } from './seed'
+import { buildDemoData, DEMO_ENABLED } from './seed'
 
 export interface DB {
   version: 1
@@ -31,7 +31,7 @@ export interface DB {
   audit: AuditEntry[]
 }
 
-const KEY = 'sana-db-v1'
+const KEY = 'sana-db-v2'
 const DELAY = Number(import.meta.env.VITE_MOCK_DELAY ?? 150)
 const MAX_AUDIT = 2000
 
@@ -67,7 +67,7 @@ function emptyDb(): DB {
     rolePerms: structuredClone(DEFAULT_ROLE_PERMS),
     audit: [],
   }
-  if (import.meta.env.VITE_DEMO_DATA === 'true') buildDemoData(db)
+  if (DEMO_ENABLED) buildDemoData(db)
   return db
 }
 

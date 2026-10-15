@@ -4,6 +4,7 @@ import { Alert, Button, Form } from 'antd'
 import { useForm } from 'react-hook-form'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
+import { DEMO_ENABLED } from '@/api/seed'
 import { authApi } from '@/api/users.api'
 import { RHFInput, RHFPassword } from '@/components/form'
 import { useAuthStore } from '@/store/auth'
@@ -51,7 +52,7 @@ export function LoginPage() {
             ورود
           </Button>
         </form>
-        {import.meta.env.VITE_DEMO_DATA === 'true' && (
+        {DEMO_ENABLED && (
           <div className="hint" style={{ marginTop: 14, textAlign: 'center' }}>
             دمو: admin/admin — manager، hr، credit، digital با رمز 123456
           </div>

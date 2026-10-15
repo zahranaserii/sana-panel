@@ -23,7 +23,8 @@ export default function CreditApprovalPage() {
   const rows = requests
     .filter((r) => r.status !== 'PENDING_MANAGER' && r.status !== 'REJECTED_MANAGER')
     .filter((r) => companyFilter === 'all' || r.companyId === companyFilter)
-    .reverse()
+    // اول درخواست‌های منتظر تصمیم، سپس جدیدترین‌ها
+    .sort((a, b) => Number(b.status === 'PENDING_CREDIT') - Number(a.status === 'PENDING_CREDIT') || b.date.localeCompare(a.date))
   const selectedRows = rows.filter((r) => selected.includes(r.id) && r.status === 'PENDING_CREDIT')
 
   const stage = useApiMutation(
