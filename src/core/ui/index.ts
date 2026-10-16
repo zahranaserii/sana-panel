@@ -1,0 +1,15 @@
+/** کیت کامپوننت‌های عمومی — مستقل از هر پروژه. نمودارها: '@/core/ui/charts' */
+import './ui.css'
+
+export { Page, SectionCard, Grid, Callout } from './layout'
+export { StatCard, StatGrid, Money, StatusBadge, createStatusBadge, EmptyState, InfoList, Avatar } from './display'
+export type { Tone, StatusMeta } from './display'
+export { DataTable } from './DataTable'
+export type { DataTableProps } from './DataTable'
+export { RowActions, ConfirmButton, BulkBar, ExportButton, ImportButton } from './actions'
+export type { RowAction } from './actions'
+export { Can, useDisclosure, FilterBar, FilterItem, DateRangeFilter, SaveBar, PageSkeleton, ForbiddenState, ErrorState } from './misc'
+export { JalaliDatePicker } from './JalaliDatePicker'
+export { AmountInput } from './AmountInput'
+export { ErrorBoundary } from './ErrorBoundary'
+export { FeedbackBridge, notify, confirm } from './feedback'

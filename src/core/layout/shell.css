@@ -1,0 +1,32 @@
+.shell { min-height: 100vh; }
+.shell-sider { position: sticky !important; top: 0; height: 100vh; background: var(--sider-gradient) !important; z-index: 30; }
+.shell-sider-inner { display: flex; flex-direction: column; height: 100%; min-height: 100vh; }
+.shell-brand { display: flex; align-items: center; gap: 12px; padding: 20px 18px 18px; color: #fff; border-bottom: 1px solid rgba(255,255,255,.08); }
+.shell-brand.compact { justify-content: center; padding-inline: 0; }
+.shell-logo { flex: none; width: 44px; height: 44px; border-radius: 12px; background: #fff; display: grid; place-items: center; padding: 5px; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+.shell-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.shell-brand-name { font-weight: 800; font-size: 13.5px; line-height: 1.6; }
+.shell-brand-sub { font-size: 11.5px; color: #afc1d6; }
+.shell-menu { flex: 1; min-height: 0; overflow-y: auto; padding: 8px 10px 16px; }
+.shell-menu .ant-menu { border-inline-end: none !important; }
+.shell-menu .ant-menu-item-group-title { font-size: 11px; font-weight: 700; letter-spacing: .2px; padding-top: 14px; }
+.shell-menu .ant-menu-item-selected { box-shadow: inset -3px 0 0 var(--c-accent); }
+.shell-menu .ant-menu-item-selected .anticon { color: var(--c-accent) !important; }
+
+.shell-header { position: sticky; top: 0; z-index: 20; height: var(--header-h); display: flex; align-items: center; gap: 10px; padding: 0 24px; background: rgba(255,255,255,.85); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--c-line); }
+.shell-crumb { font-size: 13px; }
+.shell-date { font-size: 12px; font-weight: 700; color: #8a6214; background: #fbf3df; padding: 4px 12px; border-radius: 999px; }
+.shell-partner { height: 34px; width: auto; }
+.shell-user { display: flex; align-items: center; gap: 10px; background: none; border: 1px solid transparent; border-radius: 12px; padding: 4px 8px 4px 10px; cursor: pointer; font: inherit; color: inherit; transition: background .15s, border-color .15s; }
+.shell-user:hover, .shell-user:focus-visible { background: #f9fafb; border-color: var(--c-line); outline: none; }
+.shell-user-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.4; }
+.shell-user-name { font-weight: 700; font-size: 13px; }
+.shell-user-role { font-size: 11.5px; color: var(--c-ink-soft); }
+
+.shell-content { padding: 24px 28px 32px; width: 100%; max-width: 1480px; margin: 0 auto; }
+.shell-footer { text-align: center; font-size: 12px; color: var(--c-ink-soft); padding: 4px 16px 20px; }
+@media (max-width: 768px) {
+  .shell-header { padding: 0 12px; }
+  .shell-content { padding: 16px 12px 24px; }
+  .shell-crumb { display: none; }
+}
